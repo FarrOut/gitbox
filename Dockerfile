@@ -1,4 +1,4 @@
-FROM busybox:glibc
+FROM ubuntu:latest
 LABEL maintainer="Greg Farr"
 
 RUN apt update && \
