@@ -1,9 +1,7 @@
 pipeline {
     agent { label 'docker' }
 
-    tools{
-      tool name: 'docker-latest', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-    }
+    tool name: 'docker-latest', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'  
 
     options {
         buildDiscarder(logRotator(numToKeepStr: '1', daysToKeepStr: '1'))
