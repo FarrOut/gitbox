@@ -17,9 +17,6 @@ pipeline {
             steps {
                 script {
                     echo 'Building...'
-
-
-
                 }
             }
         }
@@ -39,10 +36,7 @@ pipeline {
     }
 
     post {
-        success {
-
-        }
-
+        
         failure {
 
 
