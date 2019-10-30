@@ -1,21 +1,5 @@
-
-
-/**
- * Execute the specified command in Maven.
- *
- * @param command to execute
- */
-def MavenCommand(String command) {
-    withMaven(maven: 'maven-3.6.1', jdk: 'jdk1.7.0_80',
-            mavenLocalRepo: '.repository', options: [artifactsPublisher(disabled: true)]) {
-        sh "mvn ${command}"
-    }
-}
-
-
-
 pipeline {
-    agent any
+    agent { dockerfile true }
 
     options {
         buildDiscarder(logRotator(numToKeepStr: '1', daysToKeepStr: '1'))
@@ -33,16 +17,22 @@ pipeline {
             steps {
                 script {
                     echo 'Building...'
-                    MavenCommand(install)
+
+
+
                 }
             }
         }
 
-        stage('Deploy') {
+        stage('publish') {
             steps {
                 script {
-                    echo 'Deploying...(doesnt do anything yet)'
+                    echo 'Pushing to Nexus...'
 
+                       withDockerRegistry([ credentialsId: "<CREDENTIALS_ID>", url: "<PRIVATE_REGISTRY_URL>" ]) {
+                          // following commands will be executed within logged docker registry
+                          sh 'docker push gitbox'
+                       }
                 }
             }
         }
