@@ -1,8 +1,6 @@
 pipeline {
     agent { label 'docker' }
 
-    tool name: 'docker-latest', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'  
-
     options {
         buildDiscarder(logRotator(numToKeepStr: '1', daysToKeepStr: '1'))
         ansiColor('xterm')
@@ -29,8 +27,11 @@ pipeline {
                     echo 'Pushing to Nexus...'
 
                        withDockerRegistry([ credentialsId: "nexus-cloud", url: "http://10.0.0.5/" ]) {
-                          // following commands will be executed within logged docker registry
-                          sh 'docker push gitbox'
+
+                         script {
+                                    def customImage = docker.build("gitbox:${env.BUILD_ID}")
+                                    customImage.push()
+                                }
                        }
                 }
             }
