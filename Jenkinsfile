@@ -26,7 +26,7 @@ pipeline {
                 script {
                     echo 'Pushing to Nexus...'
 
-                       withDockerRegistry([ credentialsId: "<CREDENTIALS_ID>", url: "<PRIVATE_REGISTRY_URL>" ]) {
+                       withDockerRegistry([ credentialsId: "nexus-cloud", url: "http://10.0.0.5/" ]) {
                           // following commands will be executed within logged docker registry
                           sh 'docker push gitbox'
                        }
