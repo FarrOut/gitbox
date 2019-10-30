@@ -1,5 +1,5 @@
 pipeline {
-    agent { dockerfile true }
+    agent { label 'docker' }
 
     options {
         buildDiscarder(logRotator(numToKeepStr: '1', daysToKeepStr: '1'))
@@ -36,7 +36,7 @@ pipeline {
     }
 
     post {
-        
+
         failure {
 
 
