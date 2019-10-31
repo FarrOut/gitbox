@@ -7,10 +7,7 @@ pipeline {
         timestamps()
         timeout(time: 2, unit: 'HOURS')
     }
-tools{
-tool name: 'docker-latest', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-}
-
+    
     triggers {
         pollSCM 'H/2 * * * *'
     }
