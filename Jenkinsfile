@@ -54,10 +54,6 @@ pipeline {
                       to                : '$DEFAULT_RECIPIENTS'])
         }
 
-        always {
-            // cleanWs()
-        }
-
         changed {
             emailext([subject           : '$DEFAULT_SUBJECT',
                       body              : '$DEFAULT_CONTENT',
