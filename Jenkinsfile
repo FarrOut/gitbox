@@ -12,7 +12,7 @@ tool name: 'docker-latest', type: 'org.jenkinsci.plugins.docker.commons.tools.Do
 }
 
     triggers {
-        pollSCM 'H/30 * * * *'
+        pollSCM 'H/2 * * * *'
     }
 
     stages {
