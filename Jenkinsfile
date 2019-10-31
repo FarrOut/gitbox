@@ -7,7 +7,7 @@ pipeline {
         timestamps()
         timeout(time: 2, unit: 'HOURS')
     }
-    
+
     triggers {
         pollSCM 'H/2 * * * *'
     }
@@ -55,7 +55,7 @@ pipeline {
         }
 
         always {
-            cleanWs()
+            // cleanWs()
         }
 
         changed {
