@@ -26,7 +26,7 @@ pipeline {
                 script {
                     echo 'Pushing to Nexus...'
 
-                       withDockerRegistry([ credentialsId: "nexus-cloud", url: "http://10.0.0.5/repository/oc-docker/" ]) {
+                       withDockerRegistry([ credentialsId: "nexus-cloud", url: "https://10.0.0.5/repository/oc-docker/" ]) {
 
                          script {
                                     def customImage = docker.build("gitbox:${env.BUILD_ID}")
